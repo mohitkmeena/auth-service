@@ -52,6 +52,7 @@ private JwtFilter jwtFilter;
                                 auths.requestMatchers("/v1/auth/**").permitAll()
                                         .requestMatchers("/v1/token/**").permitAll()
                                         .requestMatchers("/v1/password/**").permitAll()
+                                        .requestMatchers("/v1/ping/**").permitAll()
                                         .anyRequest().authenticated())
                .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                .authenticationProvider(authenticationProvider())

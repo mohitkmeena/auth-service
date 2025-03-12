@@ -27,19 +27,18 @@ public class AuthController {
 
     @PostMapping("/login")
     public  String login(@RequestBody LoginRequest loginRequest){
+
        return authService.login(loginRequest);
     }
+
     @GetMapping("/ping")
     public ResponseEntity<String> ping(){
+        System.out.println("in ping ");
         Authentication auth= SecurityContextHolder.getContext().getAuthentication();
         if(auth!=null&&auth.isAuthenticated()){
             return ResponseEntity.ok(auth.getName());
         }
         return  ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("unauthorized");
     }
-
-
-
-
 
 }
