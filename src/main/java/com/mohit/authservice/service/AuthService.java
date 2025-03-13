@@ -35,6 +35,7 @@ public class AuthService {
                         .username(signInRequest.getUsername())
                         .password(signInRequest.getPassword())
                        .name(signInRequest.getName())
+                .email(signInRequest.getEmail())
                        .build();
         userRepository.save(user);
     }
@@ -52,4 +53,5 @@ public class AuthService {
             return "invalid credentials";
         }
     }
+
 }

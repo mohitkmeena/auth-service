@@ -13,4 +13,8 @@ public class GlobalExceptionHandler {
     public ProblemDetail handleUserNotFound(UserNotFound ex){
         return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND,ex.getMessage());
     }
+    @ExceptionHandler(ForgetPasswordReqException.class)
+    public ProblemDetail handleUserNotFound(ForgetPasswordReqException ex){
+        return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND,ex.getMessage());
+    }
 }

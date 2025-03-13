@@ -20,4 +20,5 @@ public class User {
     @Size(min = 6,message = "password length must be 6 or longer ")
     private String password;
     private String name;
+    private String email;
 }

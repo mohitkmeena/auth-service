@@ -27,7 +27,10 @@ public class SecurityConfig  {
 @Autowired
 private JwtFilter jwtFilter;
 
-
+  @Bean
+  public PasswordEncoder passwordEncoder(){
+      return new BCryptPasswordEncoder(12);
+  }
     @Autowired
     private UserDetailsImpl userDetailsService;
 
@@ -35,7 +38,7 @@ private JwtFilter jwtFilter;
     public AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider authp=new DaoAuthenticationProvider();
         authp.setUserDetailsService(userDetailsService);
-        authp.setPasswordEncoder(new BCryptPasswordEncoder(12));
+        authp.setPasswordEncoder(passwordEncoder());
         return authp;
 
     }
@@ -50,7 +53,6 @@ private JwtFilter jwtFilter;
                 .authorizeHttpRequests(
                         auths->
                                 auths.requestMatchers("/v1/auth/**").permitAll()
-                                        .requestMatchers("/v1/token/**").permitAll()
                                         .requestMatchers("/v1/password/**").permitAll()
                                         .requestMatchers("/v1/ping/**").permitAll()
                                         .anyRequest().authenticated())
